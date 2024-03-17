@@ -1,0 +1,18 @@
+<%- include('./partials/header.ejs', {title: "Register", nav_links:false}) %>
+<div class="login">
+  <h1>Register</h1>
+  <% if (error) { %>
+    <h3 class="error-msg"><%= error %></h3>
+  <% } %>
+  </h2>
+  <form action="/users/signIn" method="POST">
+    Name: <input type="text" class="name" name="name" value="<%= filledData.name %>"/> <br />
+    Username: <input type="text" class="username" name="username" value="<%= filledData.username %>"/> <br />
+    Email: <input type="text" class="email" name="email" value="<%= filledData.email %>"/> <br />
+    Password:
+    <input type="password" class="password" name="password" /> <br />
+    <button type="submit">Submit</button>
+  </form>
+  <p>Have an account? <a href="/users/login">Login</a></p>
+  <%- include('./partials/footer.ejs') %>
+</div>

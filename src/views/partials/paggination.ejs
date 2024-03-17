@@ -1,0 +1,5 @@
+<ul class="paggination"> Pages:
+    <% for (let index = 1; index <= pages; index++) {%>
+        <li><a href="<%= routePath %>?page=<%= index %>"><%= index %></a></li>        
+    <%} %>
+</ul>

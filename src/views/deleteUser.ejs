@@ -1,0 +1,7 @@
+<%- include('./partials/header.ejs', {title: "", nav_links:true, loggedUser:user}) %>
+<h1>Delete User</h1>
+<form action="/users/<%= user._id.toString() %>?_method=DELETE" method="POST">
+  <input type="hidden", name="_method", value="DELETE">
+  <input type="submit", value="Delete User">
+</form>
+<%- include('./partials/footer.ejs') %>

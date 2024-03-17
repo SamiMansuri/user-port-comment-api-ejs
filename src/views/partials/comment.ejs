@@ -1,0 +1,19 @@
+<div class="comment-container">
+    <h3>Comments</h3>
+    <% comments.forEach(comment => { %>
+        <% if (comment.commentOn.toString()===post._id.toString()) { %>
+            <div class="comment-card">
+                <p><%= comment.commentBy?.name %></p>
+                <div >
+                    <h4><%= comment.comment %></h4>
+                    <% if (comment.commentBy?._id.toString()===user._id.toString() || user.role==='admin' || user._id.toString() === post.userId._id.toString()) { %>
+                        <form action="/users/<%= post.userId?._id.toString() %>/posts/<%= post._id.toString() %>/comments/<%= comment._id.toString() %>?_method=DELETE" method="POST">
+                            <input type="hidden", name="_method", value="DELETE">
+                            <button value="Delete Comment" class="commentDeleteBtn" type="submit">Delete</button>
+                        </form>
+                    <% } %>
+                </div>
+            </div>
+        <% } %>
+    <%}); %>
+</div>

@@ -1,0 +1,8 @@
+<%- include('./partials/header.ejs', {title: "Create Post", nav_links:true, loggedUser:user}) %>
+<h1>Create Post</h1>
+<form action="/users/<%= user._id.toString() %>/posts" method="POST">
+  Title: <input type="text" name="title" class="title"/><br/>
+  <label for="description">Description:</label> <textarea name="description" id="description" cols="30" rows="10"></textarea> <br>
+  <button type="submit">Submit</button>
+</form>
+<%- include('./partials/footer.ejs') %>

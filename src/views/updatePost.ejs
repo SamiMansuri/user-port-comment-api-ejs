@@ -1,0 +1,25 @@
+<%- include('./partials/header.ejs', {title: "Update Post", nav_links:true,
+loggedUser:user}) %>
+<h1>Update Post</h1>
+<form
+  action="/users/<%= userId.toString() %>/posts/<%= postId.toString() %>?_method=PUT"
+  method="POST"
+>
+  Title:
+  <input
+    type="text"
+    name="title"
+    class="title"
+    value="<%= post.title %>"
+  /><br />
+  <label for="description">Description:</label>
+  <textarea name="description" id="description" cols="30" rows="10">
+<%= post.description %></textarea
+  >
+  <br />
+  <button type="submit">Submit</button>
+</form>
+
+<a href="/feed"><button style="margin-top: 10px">Cancel</button></a>
+
+<%- include('./partials/footer.ejs') %>

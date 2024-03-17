@@ -1,0 +1,9 @@
+<%- include('./partials/header.ejs', {title: "Comment", nav_links:false}) %>
+<h1>Comment</h1>
+<form action="/users/login" method="POST">
+  Email: <input type="text" class="email" name="email" /> <br />
+  Password:
+  <input type="password" class="password" name="password" /> <br />
+  <button type="submit">Submit</button>
+</form>
+<%- include('./partials/footer.ejs') %>

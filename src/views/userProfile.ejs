@@ -1,0 +1,56 @@
+<%- include('./partials/header.ejs', {title: "Create Post", nav_links:true, loggedUser:user}) %>
+<div class="user-container">
+    <h1>Username: <%= userById.username %></h1>
+    <h2>Name: <%= userById.name %></h2>
+    <h2>Email: <%= userById.email %></h2>
+    <div class="actionContainer">
+        <% if (user._id.toString() === userById._id.toString() || user.role === 'admin') { %>
+            <form action="/users/<%= user._id.toString() %>?_method=DELETE" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                <button value="Delete User" class="userDeleteBtn" type="submit">Delete Account</button>
+            </form>
+            <% if (user._id.toString() === userById._id.toString()) { %>
+                <form action="/users/<%= user._id.toString() %>/updateProfile" method="GET">
+                    <button value="Update User" class="userUpdateBtn" type="submit">Update Profile</button>
+                </form>
+            <% } %>
+        <% } %>
+    </div>
+    <h1>Posts</h1>
+    <% if (userPosts.length) { %>
+        <% userPosts.forEach(post => { %>
+            <div class="feed-container">
+                <div class="feed-card">
+                    <h4><%= userById.username %></h4>
+                    <h3>Title: <%= post.title %></h3>
+                    <h4>description: <%= post.description %></h4>
+                    <div class="addComment-container">
+                        <form  action="/users/<%= userById._id %>/posts/<%= post._id.toString() %>/comments" method="post">
+                            <button class="addCommentBtn">Comment</button>
+                            <input class="commentText" name="comment" type="text">
+                        </form>
+                    </div>
+                    <div class="post-action-btn">
+                        <% if (userById._id.toString()===user._id.toString() || user.role === 'admin') { %>
+                             <form action="/users/<%= userById._id.toString() %>/posts/<%= post._id.toString() %>?_method=DELETE" method="POST">
+                                <input type="hidden", name="_method", value="DELETE">
+                                <button value="Delete User" class="userDeleteBtn" type="submit">Delete Post</button>
+                            </form> 
+                        <% if (userById._id.toString()===user._id.toString()) { %>
+                            <form action="/users/<%= userById._id.toString() %>/posts/<%= post._id.toString() %>" method="GET">
+                                <button value="Update Post" class="postUpdateBtn" type="submit">Update Post</button>
+                            </form>
+                            <% } %>         
+                        <% } %>
+                    </div>
+                </div>
+                <%- include('./partials/comment.ejs', {post, user, comments:commentsOfPosts}) %>
+            </div>
+        <%}); %>
+    <% } else { %>
+        <h3>No posts</h3>
+    <% } %>
+     
+</div>
+<%- include('./partials/footer.ejs') %>
+    

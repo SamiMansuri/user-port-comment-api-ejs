@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <style>
+      body {
+        margin: 15px 50px;
+        background-color: rgb(5, 5, 51);
+        color: white;
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+      }
+      ul {
+        display: flex;
+        list-style: none;
+        gap: 10px;
+        padding-inline-start: 0;
+      }
+      li{
+        cursor: pointer;
+        padding: 0px 10px;
+      }
+      li>a:hover{
+        color: black;
+        background-color: white;
+      }
+      a {
+        color: white;
+        text-decoration: none;
+      }
+      input {
+        margin-bottom: 10px;
+      }
+      .feed-container{
+        font-size: 16px;
+        height: 300px;
+        margin-bottom: 20px;
+        display: flex;
+        border-radius: 10px;
+        background-color: black;
+        width: 800px;
+      }
+      .user-card, .feed-card{
+        padding: 20px;
+        width: 400px;
+      }
+      .user-card{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background-color: black;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+      .feed-card{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .comment-container{
+        display: flex;
+        flex-direction: column;
+        gap:20px;
+        width: 500px;
+        overflow: auto;
+        scrollbar-width: none;
+        padding: 10px;
+      }
+      .comment-container>h3{
+        margin-top: 10px;
+      }
+      h1,h2,h3,h4{
+        margin: 0;
+      }
+      button, .addCommentBtn,.userDeleteBtn{
+        background-color: rgb(64, 33, 222);
+        border-style: none;
+        height: 30px;
+        width: 7rem;
+        border-radius: 10px;
+        cursor: pointer;
+        color: white;
+      }
+      .userDeleteBtn{
+        margin-bottom: 10px;
+      }
+      .addComment-container{
+        position: absolute;
+        bottom: 30px;
+      }
+      .commentText{
+        height: 30px;
+        width: 200px;
+        border-radius: 10px;
+      }
+      .comment-card{
+        background-color: rgb(33, 33, 33);
+        margin-bottom: 10px;
+        border-radius: 10px;
+        padding: 15px;
+      }
+      .comment-card>div{
+        display: flex;
+        justify-content: space-between;
+      }
+      .error-msg{
+        color: red;
+      }
+      .post-action-btn{
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+      }
+      .paggination>li{
+        /* gap: 30px; */
+        margin-right: 20px;
+      }
+      .user-container{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .login{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+    </style>
+
+    <nav>
+      <h1><a href="/">API Demo</a></h1>
+      <ul>
+        <% if (nav_links===true) { %>
+          <li><a href="/users">Users</a></li>
+          <li><a href="/feed">Feed</a></li>
+          <li><a href="/users/<%= loggedUser._id.toString() %>/posts">Create Post</a></li>
+          <li><a href="/users/<%= loggedUser._id.toString() %>">Profile</a></li>
+          <li><a href="/users/logout">Logout</a></li>
+          <% } %>
+      </ul>
+    </nav>
+  
