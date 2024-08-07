@@ -263,11 +263,14 @@ const sendMail = async (req, res, next) => {
 
     const user = await userModel.findOne({ email: email });
 
+    const emailUser = process.env.EMAIL_USER;
+    const emailPass = process.env.EMAIL_PASS;
+
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "sachin142322@gmail.com",
-        pass: "gxqwljkxsklmqfxp",
+        user: emailUser,
+        pass: emailPass,
       },
     });
 
